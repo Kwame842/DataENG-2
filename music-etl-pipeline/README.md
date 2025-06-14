@@ -1,4 +1,3 @@
-
 # 🎵 Music Streaming ETL Pipeline (AWS MWAA)
 
 ## 📌 Overview
@@ -56,6 +55,8 @@ music-etl-pipeline/
 │   ├── transform_kpis.py          # Transform logic
 │   └── load_redshift.py           # Load logic
 ├── requirements.txt               # Python dependencies
+├── diagram/                       # Pipeline diagram
+├── screenshots/                   # Screenshots of pipeline execution
 └── README.md                      # Project documentation
 ```
 
@@ -89,7 +90,7 @@ s3://your-bucket/airflow/requirements.txt
 Update MWAA config:
 
 - Open AWS Console > MWAA > Your Environment
-- Under *Python requirements file*, specify:
+- Under _Python requirements file_, specify:
 
   ```
   s3://your-bucket/airflow/requirements.txt
@@ -112,12 +113,12 @@ Save and wait for MWAA to install dependencies.
 
 ## 🧠 DAG Details
 
-| Task ID            | Description                                           |
-|--------------------|-------------------------------------------------------|
-| `extract_metadata` | Extracts metadata and streaming batches               |
-| `validate_datasets`| Validates the presence and schema of input files      |
-| `transform_kpis`   | Transforms the data and computes key performance metrics |
-| `load_to_redshift` | Loads the transformed KPIs to the Redshift warehouse  |
+| Task ID             | Description                                              |
+| ------------------- | -------------------------------------------------------- |
+| `extract_metadata`  | Extracts metadata and streaming batches                  |
+| `validate_datasets` | Validates the presence and schema of input files         |
+| `transform_kpis`    | Transforms the data and computes key performance metrics |
+| `load_to_redshift`  | Loads the transformed KPIs to the Redshift warehouse     |
 
 ## 📈 KPIs Computed
 
