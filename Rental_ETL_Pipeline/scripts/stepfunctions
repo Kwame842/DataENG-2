@@ -1,0 +1,30 @@
+{
+    "Comment": "ETL pipeline without metrics generation",
+    "StartAt": "ExtractRawData",
+    "States": {
+      "ExtractRawData": {
+        "Type": "Task",
+        "Resource": "arn:aws:states:::glue:startJobRun.sync",
+        "Parameters": {
+          "JobName": "extract_from_Aurora"
+        },
+        "Next": "TransformCuratedData"
+      },
+      "TransformCuratedData": {
+        "Type": "Task",
+        "Resource": "arn:aws:states:::glue:startJobRun.sync",
+        "Parameters": {
+          "JobName": "load_data_to_Curated"
+        },
+        "Next": "LoadToRedshift"
+      },
+      "LoadToRedshift": {
+        "Type": "Task",
+        "Resource": "arn:aws:states:::glue:startJobRun.sync",
+        "Parameters": {
+          "JobName": "load_to_Redshift_raw"
+        },
+        "End": true
+      }
+    }
+  }
