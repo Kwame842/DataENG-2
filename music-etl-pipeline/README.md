@@ -1,10 +1,12 @@
 # 🎵 Music Streaming ETL Pipeline (AWS MWAA)
 
-## 📌 Overview
+## Overview
 
 This project implements an **end-to-end ETL (Extract, Transform, Load) pipeline** for a simulated music streaming service using **Amazon MWAA (Managed Workflows for Apache Airflow)**. The pipeline extracts music metadata and streaming activity data, performs data validation and transformation, and loads the computed KPIs into **Amazon Redshift** for analysis.
 
-## ⚙️ Architecture
+![Architecture](/music-etl-pipeline/diagram/Music%20Streaming%20ETL%20Pipeline%20on%20AWS%20with%20Airflow%20(MWAA)-%20Architecture.png)
+
+## Architecture
 
 ```
         +-------------+        +--------------+
@@ -35,7 +37,7 @@ This project implements an **end-to-end ETL (Extract, Transform, Load) pipeline*
                      +-----------+
 ```
 
-## 🚀 Features
+## Features
 
 - **Metadata Extraction** from simulated RDS CSVs.
 - **Streaming Data Extraction** from hourly batches in S3.
@@ -44,7 +46,7 @@ This project implements an **end-to-end ETL (Extract, Transform, Load) pipeline*
 - **Redshift Loading**: Final KPIs are stored in Amazon Redshift (Presentation Layer).
 - Fully orchestrated using **Airflow on MWAA**.
 
-## 📁 Project Structure
+## Project Structure
 
 ```
 music-etl-pipeline/
@@ -60,7 +62,7 @@ music-etl-pipeline/
 └── README.md                      # Project documentation
 ```
 
-## 🔧 Installation & Setup
+## Installation & Setup
 
 ### 1. Upload Code to S3
 
@@ -111,7 +113,9 @@ Save and wait for MWAA to install dependencies.
 - `metadata_prefix`: S3 path to metadata CSVs
 - `streaming_prefix`: S3 path to streaming data (e.g. `streaming/`)
 
-## 🧠 DAG Details
+![Dags](/music-etl-pipeline/screenshots/MWAA%20workflow.png)
+
+## DAG Details
 
 | Task ID             | Description                                              |
 | ------------------- | -------------------------------------------------------- |
@@ -120,7 +124,7 @@ Save and wait for MWAA to install dependencies.
 | `transform_kpis`    | Transforms the data and computes key performance metrics |
 | `load_to_redshift`  | Loads the transformed KPIs to the Redshift warehouse     |
 
-## 📈 KPIs Computed
+## KPIs Computed
 
 - Total Streams Per Song
 - Unique Listeners Per Song
@@ -128,7 +132,7 @@ Save and wait for MWAA to install dependencies.
 - Average Session Duration
 - Daily/Hourly Active Users
 
-## 🧪 Testing
+## Testing
 
 To test locally:
 
@@ -137,7 +141,7 @@ pip install -r requirements.txt
 airflow dags test music_etl_pipeline 2025-06-12
 ```
 
-## 🛡️ Monitoring
+## Monitoring
 
 MWAA provides logging and monitoring through:
 
@@ -146,7 +150,7 @@ MWAA provides logging and monitoring through:
 
 Enable failure notifications via `on_failure_callback` for email or Slack alerting (requires extra configuration).
 
-## 📝 Future Improvements
+## Future Improvements
 
 - Add unit tests using `pytest`
 - Automate schema validation using `great_expectations`
@@ -154,7 +158,7 @@ Enable failure notifications via `on_failure_callback` for email or Slack alerti
 - Enable parallel processing for high-volume batches
 - Add CI/CD integration with GitHub Actions or CodePipeline
 
-## 📚 References
+## References
 
 - [MWAA Documentation](https://docs.aws.amazon.com/mwaa/latest/userguide/what-is-mwaa.html)
 - [Airflow Documentation](https://airflow.apache.org/docs/)
