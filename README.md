@@ -1,10 +1,12 @@
-# 🏡 Rental Marketplace ETL Pipeline
+# Rental Marketplace ETL Pipeline
 
 This project implements a cost- and compute-efficient **batch ETL pipeline** for a rental marketplace, using Amazon Aurora, AWS Glue, Amazon Redshift, Amazon S3, and AWS Step Functions.
 
 ---
 
-## 📊 Architecture Overview
+![Architecture](./Rental_ETL_Pipeline/diagram/Architectural_Diagram.png)
+
+## Architecture Overview
 
 | Component             | Service             | Purpose                                          |
 |----------------------|---------------------|--------------------------------------------------|
@@ -16,7 +18,7 @@ This project implements a cost- and compute-efficient **batch ETL pipeline** for
 
 ---
 
-## 🧱 Project Structure
+## Project Structure
 
 ```
 glue_etl_project/
@@ -29,7 +31,9 @@ glue_etl_project/
 
 ---
 
-## 🚀 ETL Job Descriptions
+## ETL Job Descriptions
+
+![ETL Job](/Rental_ETL_Pipeline/screenshots/Glue%20Job.png)
 
 ### 1. `extract_from_aurora.py`
 
@@ -54,7 +58,9 @@ glue_etl_project/
 - Writes outputs in **Parquet format** to S3 at:
   ```
   s3://rental-etl-pipeline-data/curated/<table>/
+
   ```
+![Curated Layer](/Rental_ETL_Pipeline/screenshots/curated_layer.png)
 
 ### 4. `generate_metrics.py`
 
@@ -103,9 +109,11 @@ glue_etl_project/
 }
 ```
 
+![Pipeline](/Rental_ETL_Pipeline/screenshots/Stepfunctions.png)
+
 ---
 
-## 🪣 S3 Folder Layout
+## S3 Folder Layout
 
 ```
 s3://rental-etl-pipeline-data/
@@ -122,7 +130,7 @@ s3://rental-etl-pipeline-data/
 
 ---
 
-## 🧪 Testing & Validation
+## Testing & Validation
 
 - ✅ Can connect to Aurora from local or EC2
 - ✅ Glue jobs load correctly into Redshift
@@ -131,7 +139,7 @@ s3://rental-etl-pipeline-data/
 
 ---
 
-## 🔐 Security & Access
+## Security & Access
 
 - Aurora security group must allow port 3306 from trusted IPs
 - IAM roles:
@@ -141,7 +149,7 @@ s3://rental-etl-pipeline-data/
 
 ---
 
-## 📌 Notes
+## Notes
 
 - Parquet used for optimized storage and query performance
 - Curated data is decoupled from Redshift and available in S3
@@ -149,7 +157,7 @@ s3://rental-etl-pipeline-data/
 
 ---
 
-## 🧰 Requirements
+## Requirements
 
 - Python 3.x
 - pandas
@@ -158,12 +166,12 @@ s3://rental-etl-pipeline-data/
 
 ---
 
-## 🙋 Support
+## Support
 
 Maintainer: Kwame 
 
 Location: Ghana
   
-Contact: aws-data-team@example.com
+Contact: aws-data-team@gmail.com
 
 ---
